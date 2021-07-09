@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.scss'
 import axiosRequest from '../utils/axiosRequest'
 import BasicLayout from '../layouts/BasicLayout'
 import Container from '@material-ui/core/Container'
@@ -42,7 +42,7 @@ export default function Home({ schoolsData }:{ schoolsData:SchoolType[] }) {
 
   return (
     <BasicLayout>
-      <Container>
+      <Container className="page-container">
         <pre>{JSON.stringify({schools}, null, 4)}</pre>
       </Container>
     </BasicLayout>

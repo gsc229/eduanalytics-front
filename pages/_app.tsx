@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import '../styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { SchoolsProvider } from '../src/store'
 import { CssBaseline } from '@material-ui/core'
