@@ -35,9 +35,9 @@ export default function Home({ schoolsData }:{ schoolsData:SchoolType[] }) {
 
   return (
     <BasicLayout>
-      <Container className="page-container">
+      <div className="page-container">
         <pre>{JSON.stringify({schools}, null, 4)}</pre>
-      </Container>
+      </div>
     </BasicLayout>
   )
 }
