@@ -1,8 +1,35 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useEffect, useState } from 'react'
+import { SchoolType } from '../src/store'
+import axiosRequest from '../utils/axiosRequest'
+export async function getStaticProps() {
 
-export default function Home() {
+  let schoolsData:SchoolType[] = []
+
+  const resposne = await axiosRequest().get("/", {
+    params: {
+      "school.state": "Tx",
+      "per_page": 1,
+      _fields: "school.name,school.degrees_awarded,school.faculty_salary,latest.admissions.admission_rate,shcool.size"
+    }
+  })
+  
+  console.log({ resposne, data: resposne.data, results: resposne.data.results })
+
+  schoolsData = resposne.data.results
+
+  return {
+    props: {
+      schoolsData
+    }, // will be passed to the page component as props
+  }
+}
+
+
+export default function Home({ schoolsData }:{ schoolsData:SchoolType[] }) {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,7 +39,7 @@ export default function Home() {
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <pre>{JSON.stringify({schoolsData}, null, 4)}</pre>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
