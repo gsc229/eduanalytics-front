@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import axiosRequest from '../utils/axiosRequest'
 import BasicLayout from '../layouts/BasicLayout'
+import Container from '@material-ui/core/Container'
 import { useSchoolsContext, SchoolType } from '../src/store'
 
 export async function getStaticProps() {
@@ -40,10 +41,10 @@ export default function Home({ schoolsData }:{ schoolsData:SchoolType[] }) {
   load(schoolsData)
 
   return (
-    <div className={styles.container}>
-      <BasicLayout>
+    <BasicLayout>
+      <Container>
         <pre>{JSON.stringify({schools}, null, 4)}</pre>
-      </BasicLayout>
-    </div>
+      </Container>
+    </BasicLayout>
   )
 }

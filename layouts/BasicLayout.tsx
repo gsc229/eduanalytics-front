@@ -6,11 +6,11 @@ import Container from '@material-ui/core/Container'
 
 const BasicLayout = ({ children }:{ children:React.ReactNode }) => {
   return (
-    <Container className='basic-layout'>
+    <div className='basic-layout'>
       <Header />
         {children}
       <Footer />
-    </Container>
+    </div>
   )
 }
 
