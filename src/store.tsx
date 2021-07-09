@@ -11,25 +11,17 @@ export interface SchoolType {
   size: number
 }
 
-const initialState = {
-    id: 0,
-    name: "",
-    alias: "",
-    city: "",
-    state: "",
-    zip: "",
-    school_url: "",
-    size: 0
-}
-
 
 export const useSchools = ( initial:SchoolType[] ) => {
   const [schools, schoolsSet] = React.useState<SchoolType[]>(initial)
   const [currentSchool, currentSchoolSet] = React.useState("")
+  const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
   return {
     schools,
     currentSchool, 
+    drawerOpen,
+    setDrawerOpen,
     currentSchoolSet,
     load(fetchedSchools: SchoolType[]){
       schoolsSet(fetchedSchools)
