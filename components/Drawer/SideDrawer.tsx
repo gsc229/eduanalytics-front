@@ -8,11 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import MailIcon from '@material-ui/icons/Mail'
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MenuIcon from '@material-ui/icons/Menu'
-import DrawerList from './DrawerList'
-import Typography from '@material-ui/core/Typography'
 import { makeStyles, useTheme } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
+import { inherits } from 'util'
 
 const drawerWidth = 240
 
@@ -28,10 +26,15 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.secondary.light
   },
-  drawerInner: {
-    marginTop: '2rem'
+  listItem: {
+    color: "darkgray",
+    "&:hover": {
+      color: "white"
+    }
+  },
+  listIcon: {
+    color: "inherit"
   }
 }))
 
@@ -47,8 +50,8 @@ const SideDrawer = () => {
       <Divider />
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon color="white">{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItem className={classes.listItem} button key={text}>
+            <ListItemIcon className={classes.listIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -56,8 +59,8 @@ const SideDrawer = () => {
       <Divider />
       <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+          <ListItem className={classes.listItem } button key={text}>
+            <ListItemIcon className={classes.listIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
