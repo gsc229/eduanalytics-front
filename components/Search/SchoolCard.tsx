@@ -7,6 +7,7 @@ import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
 import { SchoolDataType } from '../../src/store'
+import { useSchoolsContext } from '../../src/store'
 
 const useStyles = makeStyles(theme => (
   {
@@ -33,6 +34,8 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
 
   const classes = useStyles();
 
+  const { currentSchoolSet } = useSchoolsContext()
+
   return (
     <Card className={classes.root}>
       <CardContent>
@@ -50,9 +53,10 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={`/school-detail/${school.school.name.replace(/ /g, "-")}`} >
+        <Link
+        href={`/school-detail/${school.school.name.replace(/ /g, "-")}`} >
           <a style={{textDecoration: "none"}} >
-            <Button>See Data</Button>
+            <Button onClick={() => currentSchoolSet(school) }>See Data</Button>
           </a>
         </Link>
       </CardActions>

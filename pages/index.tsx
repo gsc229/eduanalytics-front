@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import styles from '../styles/Home.module.scss'
 import BasicLayout from '../layouts/BasicLayout'
 import { useSchoolsContext } from '../src/store'
@@ -6,8 +7,11 @@ import CircularIndeterminate from '../components/Progress/CircularIndeterminate'
 
 export default function Home() {
 
-  const { schools, isSearching } = useSchoolsContext()
+  const { schools, isSearching, currentSchoolSet } = useSchoolsContext()
   
+  useEffect(() => {
+    currentSchoolSet(undefined)
+  }, [])
 
   return (
     <BasicLayout>
@@ -15,10 +19,9 @@ export default function Home() {
       {!isSearching &&
         <div
         className={styles.school_card_container}>
-          {schools?.map((school, idx) => {
-            console.log(school.id)
-            return <SchoolCard key={school.id} school={school} />
-          })}
+          {schools?.map((school, idx) => (
+            <SchoolCard key={school.id} school={school} />
+          ))}
         </div>
       }
       {isSearching && <div style={{marginTop: "20%"}}><CircularIndeterminate  /></div> }

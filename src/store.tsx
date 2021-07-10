@@ -26,7 +26,7 @@ const normalizeData = (schools:any) => {
 export const useSchools = ( initial:SchoolDataType[] ) => {
   const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
   const [isSearching, setIsSearching] = React.useState(false);
-  const [currentSchool, currentSchoolSet] = React.useState("")
+  const [currentSchool, currentSchoolSet] = React.useState<SchoolDataType>()
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
   return {
