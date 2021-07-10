@@ -6,15 +6,21 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
-import MailIcon from '@material-ui/icons/Mail'
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf'
+import PrintIcon from '@material-ui/icons/Print'
+import GetAppIcon from '@material-ui/icons/GetApp'
 import { makeStyles, useTheme } from '@material-ui/core'
+import { Theme } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
 
 const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => ({
+interface StyleProps {
+  currentSchool:any
+}
+
+const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -28,10 +34,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   listItem: {
-    color: "darkgray",
-    "&:hover": {
-      color: "white"
-    }
+    color: (props) => (
+      props.currentSchool ? "lightgreen" : "lightgray"
+    ) ,
+    "&:hover": (props) => (
+      props.currentSchool ? "green" : "lightgray"
+    ) 
   },
   listIcon: {
     color: "inherit"
@@ -39,33 +47,34 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SideDrawer = () => {
-
-  const classes = useStyles()
+  
+  const { drawerOpen, setDrawerOpen, currentSchool } = useSchoolsContext()
+  const classes = useStyles({currentSchool})
   const theme = useTheme()
-  const { drawerOpen, setDrawerOpen } = useSchoolsContext()
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <SearchInput />
       <Divider />
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem className={classes.listItem} button key={text}>
-            <ListItemIcon className={classes.listIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+        <List>
+          <ListItem disabled={!currentSchool} className={classes.listItem} button>
+              <ListItemIcon className={classes.listIcon} > <PictureAsPdfIcon />
+                </ListItemIcon>
+              <ListItemText primary="PDF" />
+            </ListItem>
+            <ListItem disabled={!currentSchool} className={classes.listItem} button>
+              <ListItemIcon className={classes.listIcon} > <GetAppIcon />
+                </ListItemIcon>
+              <ListItemText primary="JSON" />
+            </ListItem>
+            <ListItem disabled={!currentSchool} className={classes.listItem} button>
+              <ListItemIcon className={classes.listIcon} > <PrintIcon />
+                </ListItemIcon>
+              <ListItemText primary="Print" />
+            </ListItem>
+        </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem className={classes.listItem } button key={text}>
-            <ListItemIcon className={classes.listIcon} >{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
     </div>
   )
 
