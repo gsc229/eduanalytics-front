@@ -10,7 +10,7 @@ import MailIcon from '@material-ui/icons/Mail'
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { makeStyles, useTheme } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
-import { inherits } from 'util'
+import SearchInput from '../Search/SearchInput'
 
 const drawerWidth = 240
 
@@ -47,6 +47,7 @@ const SideDrawer = () => {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <SearchInput />
       <Divider />
       <List>
         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
