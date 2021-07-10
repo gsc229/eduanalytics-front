@@ -36,7 +36,7 @@ function SchoolCard({ school }: { school:SchoolSearchResultType }) {
         <Typography variant="h5" component="h2">
           { school["school.name"] }
         </Typography>
-          { school["school.alias"].length >= 30 ? school['school.alias'].substring(0, 30) + "..." : school['school.alias'] }
+          { school["school.alias"]?.length >= 30 ? school['school.alias'].substring(0, 30) + "..." : school['school.alias'] }
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           { school["school.city"] }

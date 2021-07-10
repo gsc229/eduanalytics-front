@@ -1,11 +1,12 @@
 /* eslint-disable no-use-before-define */
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react'
 import axios from '../../utils/axiosGovRequest.js'
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles } from '@material-ui/core';
-import { useSchoolsContext } from '../../src/store';
-import { useDebounce } from './useDebounce';
+import TextField from '@material-ui/core/TextField'
+import Autocomplete from '@material-ui/lab/Autocomplete'
+import LinearIndeterminate from '../Progress/LinearIndeterminate'
+import { makeStyles } from '@material-ui/core'
+import { useSchoolsContext } from '../../src/store'
+import { useDebounce } from './useDebounce'
 
 const useStyles = makeStyles(theme => ({
   inputTextField: {
@@ -38,23 +39,23 @@ export default function SearchInput({}) {
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
   // ... so that we aren't hitting our API rapidly.
-  const debouncedSearchTerm = useDebounce(schoolName, 500);
+  const debouncedSearchTerm = useDebounce(schoolName, 500)
 
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        setIsSearching(true);
+        setIsSearching(true)
         searchSchools(debouncedSearchTerm).then((results) => {
-          setIsSearching(false);
-          load(results);
-        });
+          setIsSearching(false)
+          load(results)
+        })
       } else {
-        load([]);
-        setIsSearching(false);
+        load([])
+        setIsSearching(false)
       }
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
-  );
+  )
 
   const searchSchools = (name:string) => {
     const apiKey = process.env.API_KEY
@@ -73,10 +74,10 @@ export default function SearchInput({}) {
         return r.data.results
       })
       .catch((error) => {
-        console.error("catch error: ", error);
-        console.log("catch error: ", error);
-        return [];
-      });
+        console.error("catch error: ", error)
+        console.log("catch error: ", error)
+        return []
+      })
   }
 
 
@@ -94,8 +95,9 @@ export default function SearchInput({}) {
             ...params} label="Search School Name" margin="normal" variant="filled" />
         )}
       />
+      {isSearching && <LinearIndeterminate />}
     </div>
-  );
+  )
 }
 
 
