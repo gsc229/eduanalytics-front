@@ -15,9 +15,9 @@ export default function Home() {
       {!isSearching &&
         <div
         className={styles.school_card_container}>
-          {schools?.map(school => (
-            <SchoolCard key={school['school.id']} school={school} />
-          ))}
+          {schools?.map((school, idx) => {
+            return <SchoolCard key={school.id} school={school} />
+          })}
         </div>
       }
       {isSearching && <CircularIndeterminate /> }

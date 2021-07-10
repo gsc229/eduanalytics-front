@@ -47,8 +47,10 @@ function SchoolCard({ school }: { school:SchoolSearchResultType }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={`/${school['school.name']}`} >
-          <a>See Data</a>
+        <Link href={`/school-detail/${school['school.name'].replace(/ /g, "-")}`} >
+          <a style={{textDecoration: "none"}} >
+            <Button>See Data</Button>
+          </a>
         </Link>
         
       </CardActions>

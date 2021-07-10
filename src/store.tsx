@@ -2,7 +2,7 @@ import { bool } from "prop-types";
 import * as React from "react"
 
 export interface SchoolSearchResultType {
-  "school.id": number
+  id: number
   "school.name": string
   "school.alias": string
   "school.city": string
@@ -10,6 +10,16 @@ export interface SchoolSearchResultType {
   "school.zip":	string
   "school.school_url":	string
   "latest.student.size": number
+  "latest.student.demographics.race_ethnicity": RaceEthnicityType<string>[],
+  "latest.academics.program_percentage": ProgramType<string>[]
+}
+
+export interface RaceEthnicityType<T> {
+  race: T
+}
+
+export interface ProgramType<T> {
+  program: T
 }
 
 

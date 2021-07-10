@@ -56,21 +56,24 @@ export default function SearchInput({}) {
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   )
+  
+  const school_fields = "id,school.name,school.alias,school.city,school.state,school.zip,school.school_url,latest.student.size,"
+  const latest_fields = "latest.student.size,latest.student.demographics.race_ethnicity,latest.academics.program_percentage"
+  
 
   const searchSchools = (name:string) => {
     const apiKey = process.env.API_KEY
-    console.log({apiKey})
     return axios()
       .get("/", {
         params: {
           "api_key": apiKey,
           "school.name": name,
           "per_page": 10,
-          _fields: "_fields=school.id,school.name,school.alias,school.city,school.state,school.zip,school.school_url,latest.student.size"
+          _fields: "_fields=" + school_fields + latest_fields
         }
       })
       .then((r) => {
-        console.log({r})
+        //console.log({r})
         return r.data.results
       })
       .catch((error) => {
