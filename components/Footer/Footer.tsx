@@ -31,15 +31,15 @@ const Footer = () => {
   const classes = useStyles()
 
   return (
-    <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Analytics can help students succeed
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          We collaborate with partners to deliver the right data at the right time to take the right steps to support all students.
-        </Typography>
-        <Copyright />
-      </footer>
+    <footer style={{position: "sticky"}} className={classes.footer}>
+      <Typography variant="h6" align="center" gutterBottom>
+        Analytics can help students succeed
+      </Typography>
+      <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        We collaborate with partners to deliver the right data at the right time to take the right steps to support all students.
+      </Typography>
+      <Copyright />
+    </footer>
   )
 }
 

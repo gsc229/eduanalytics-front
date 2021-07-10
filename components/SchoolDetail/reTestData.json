@@ -1,0 +1,32 @@
+[
+  {
+    "id": "elixir",
+    "label": "elixir",
+    "value": 103,
+    "color": "hsl(311, 70%, 50%)"
+  },
+  {
+    "id": "go",
+    "label": "go",
+    "value": 26,
+    "color": "hsl(129, 70%, 50%)"
+  },
+  {
+    "id": "rust",
+    "label": "rust",
+    "value": 171,
+    "color": "hsl(228, 70%, 50%)"
+  },
+  {
+    "id": "lisp",
+    "label": "lisp",
+    "value": 167,
+    "color": "hsl(41, 70%, 50%)"
+  },
+  {
+    "id": "hack",
+    "label": "hack",
+    "value": 239,
+    "color": "hsl(321, 70%, 50%)"
+  }
+]

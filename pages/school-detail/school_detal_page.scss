@@ -1,3 +1,13 @@
 .school-detail-page{
   padding-top: 30px;
+  .pie-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .pie-wrapper{
+      height: 500px;
+      width: 500px;
+    }
+  }
 }
+

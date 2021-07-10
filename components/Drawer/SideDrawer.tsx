@@ -10,16 +10,15 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf'
 import PrintIcon from '@material-ui/icons/Print'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import { makeStyles, useTheme } from '@material-ui/core'
-import { Theme } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
-
+import CssBaseline from '@material-ui/core/CssBaseline'
 const drawerWidth = 240
 
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('lg')]: {
       width: drawerWidth,
       flexShrink: 0,
     },
@@ -42,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SideDrawer = () => {
-  
   const { drawerOpen, setDrawerOpen, currentSchool } = useSchoolsContext()
   const classes = useStyles(currentSchool)
   const theme = useTheme()
@@ -61,7 +59,7 @@ const SideDrawer = () => {
             <ListItem disabled={!currentSchool} className={classes.listItem} button>
               <ListItemIcon className={classes.listIcon} > <GetAppIcon />
                 </ListItemIcon>
-              <ListItemText primary="JSON" />
+              <ListItemText primary="{ JSON }" />
             </ListItem>
             <ListItem disabled={!currentSchool} className={classes.listItem} button>
               <ListItemIcon className={classes.listIcon} > <PrintIcon />
@@ -76,9 +74,8 @@ const SideDrawer = () => {
   return (
     <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden lgUp implementation="css">
           <Drawer
-            //container={container}
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={drawerOpen}
@@ -93,7 +90,7 @@ const SideDrawer = () => {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden xsDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,
