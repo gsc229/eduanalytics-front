@@ -16,11 +16,8 @@ import SearchInput from '../Search/SearchInput'
 
 const drawerWidth = 240
 
-interface StyleProps {
-  currentSchool:any
-}
 
-const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
+const useStyles = makeStyles((theme) => ({
   drawer: {
     [theme.breakpoints.up('sm')]: {
       width: drawerWidth,
@@ -34,12 +31,10 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   listItem: {
-    color: (props) => (
-      props.currentSchool ? "lightgreen" : "lightgray"
-    ) ,
-    "&:hover": (props) => (
-      props.currentSchool ? "green" : "lightgray"
-    ) 
+    color:  "darkgray",
+    "&:hover": {
+      color: "white"
+    }
   },
   listIcon: {
     color: "inherit"
@@ -49,7 +44,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) => ({
 const SideDrawer = () => {
   
   const { drawerOpen, setDrawerOpen, currentSchool } = useSchoolsContext()
-  const classes = useStyles({currentSchool})
+  const classes = useStyles(currentSchool)
   const theme = useTheme()
 
   const drawer = (

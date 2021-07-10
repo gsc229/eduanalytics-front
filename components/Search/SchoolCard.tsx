@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
+import Link from 'next/link'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CardActions from '@material-ui/core/CardActions'
@@ -46,7 +47,10 @@ function SchoolCard({ school }: { school:SchoolSearchResultType }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">See Data</Button>
+        <Link href={`/${school['school.name']}`} >
+          <a>See Data</a>
+        </Link>
+        
       </CardActions>
     </Card>
   )
