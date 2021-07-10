@@ -1,9 +1,12 @@
 /* eslint-disable no-use-before-define */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
+import { useRouter } from 'next/router'
 import axios from '../../utils/axiosGovRequest.js'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import LinearIndeterminate from '../Progress/LinearIndeterminate'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
 import { useDebounce } from './useDebounce'
@@ -22,17 +25,24 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     width: "95%",
     margin: "auto"
+  },
+  backArrow: {
+    color: theme.palette.secondary.main,
+    margin: theme.spacing(1)
+  },
+  backButon: {
+    color: "white"
   }
 }))
 
 export default function SearchInput({}) {
-
+  const router = useRouter()
   const classes = useStyles()
   
   // Search term
   const [ schoolName, setSchoolName ] = useState("")
   // API search results & Searching status (whether there is pending API request)
-  const { schools, loadNewData, isSearching, setIsSearching } = useSchoolsContext()
+  const { schools, loadNewData, isSearching, setIsSearching, currentSchoolSet, currentSchool } = useSchoolsContext()
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
@@ -79,23 +89,46 @@ export default function SearchInput({}) {
       })
   }
 
+  const handleListSelect = (event) => {
+    console.log({eventTarget: event.target.value})
+    const sName = event
+
+    /* if(event){
+      currentSchoolSet(schools.find(s => s.school.name === event))
+      router.push(`/school-detail/${event.replace(/ /g, "-")}`)
+    } */
+
+  }
 
   return (
-    <div className={classes.inputDiv}>
-      <Autocomplete
-        className={classes.input} 
-        id="free-solo-demo"
-        freeSolo
-        options={schools ? schools.map(option => option.school.name) : []}
-        renderInput={(params) => (
-          <TextField
-          onChange={(e) => setSchoolName(e.currentTarget.value)}
-          className={ classes.inputTextField } {
-            ...params} label="Search School Name" margin="normal" variant="filled" />
-        )}
-      />
-      {isSearching && <LinearIndeterminate />}
-    </div>
+    <Fragment>
+      {!currentSchool &&
+        <div className={classes.inputDiv}>
+          <Autocomplete
+            onInputChange={(e, value) => setSchoolName(value)}
+            className={classes.input} 
+            id="free-solo-demo"
+            freeSolo
+            autoSelect
+            options={schools ? schools.map(option => option.school.name) : []}
+            renderInput={(params) => (
+              <TextField
+              className={ classes.inputTextField } {
+                ...params} label="Search School Name" margin="normal" variant="filled" />
+            )}
+          />
+          {isSearching && <LinearIndeterminate />}
+        </div>
+      }
+     {currentSchool &&
+        <Button 
+        onClick={() => router.push("/")}
+        className={classes.backButon} >
+          <ArrowBackIcon className={classes.backArrow} />
+          Back To Search
+        </Button>
+      }
+    </Fragment>
   )
 }
 

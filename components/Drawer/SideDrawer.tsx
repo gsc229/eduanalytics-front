@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
   listItem: {
-    color:  "darkgray",
+    color:  "white",
     "&:hover": {
-      color: "white"
+      color: theme.palette.secondary.main
     }
   },
   listIcon: {
