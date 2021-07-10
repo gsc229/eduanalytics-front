@@ -32,7 +32,7 @@ export default function SearchInput({}) {
   // Search term
   const [ schoolName, setSchoolName ] = useState("")
   // API search results & Searching status (whether there is pending API request)
-  const { schools, load, isSearching, setIsSearching } = useSchoolsContext()
+  const { schools, loadNewData, isSearching, setIsSearching } = useSchoolsContext()
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
@@ -45,10 +45,9 @@ export default function SearchInput({}) {
         setIsSearching(true)
         searchSchools(debouncedSearchTerm).then((results) => {
           setIsSearching(false)
-          load(results)
+          loadNewData(results)
         })
       } else {
-        load([])
         setIsSearching(false)
       }
     },
@@ -72,12 +71,10 @@ export default function SearchInput({}) {
         }
       })
       .then((r) => {
-        console.log({r})
         return r.data.results
       })
       .catch((error) => {
         console.error("catch error: ", error)
-        console.log("catch error: ", error)
         return []
       })
   }

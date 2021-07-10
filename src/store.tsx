@@ -10,9 +10,8 @@ export interface SchoolDataType {
 
 }
 
-
 const normalizeData = (schools:any) => {
-  return schools.map((school:any) => {
+  const nomralizedSchools = schools.map((school:any) => {
       const normalizedSchool = { id: null, school: null, program_percentage: null, race_ethnicity: null, size: null }
       normalizedSchool.id = school.id
       normalizedSchool.school = school.school
@@ -21,27 +20,36 @@ const normalizeData = (schools:any) => {
       normalizedSchool.size = school.latest.student.size
       return normalizedSchool
   })
+
+  localStorage.setItem("schools", JSON.stringify(nomralizedSchools))
+
+  return nomralizedSchools
 }
 
+
 export const useSchools = ( initial:SchoolDataType[] ) => {
+
   const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
-  const [isSearching, setIsSearching] = React.useState(false);
+  const [isSearching, setIsSearching] = React.useState(false)
   const [currentSchool, currentSchoolSet] = React.useState<SchoolDataType>()
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
   return {
     schools,
+    schoolsSet,
     currentSchool, 
     drawerOpen,
     setDrawerOpen,
     currentSchoolSet,
     isSearching,
     setIsSearching,
-    load(fetchedSchools: SchoolDataType[]){
+    loadNewData(fetchedSchools: SchoolDataType[]){
       schoolsSet(normalizeData(fetchedSchools))
+    },
+    loadFromLocalStorage(schoolData:SchoolDataType[]){
+      schoolsSet(schoolData)
     }
   }
-
 }
 
 type UseSchoolsType = ReturnType<typeof useSchools>
