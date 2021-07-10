@@ -1,42 +1,22 @@
 import styles from '../styles/Home.module.scss'
-import axiosRequest from '../utils/axiosRequest'
 import BasicLayout from '../layouts/BasicLayout'
-import Container from '@material-ui/core/Container'
-import { useSchoolsContext, SchoolSearchResultType } from '../src/store'
+import { useSchoolsContext } from '../src/store'
+import SchoolCard from '../components/Search/SchoolCard'
 
-export async function getServerSideProps() {
+export default function Home() {
 
-  let schoolsData:SchoolSearchResultType[] = []
-
-  const resposne = await axiosRequest().get("/", {
-    params: {
-      "school.state": "Tx",
-      "per_page": 1,
-      _fields: "school.name,school.degrees_awarded,school.faculty_salary,latest.admissions.admission_rate,shcool.size"
-    }
-  })
-  
-  schoolsData = resposne.data.results
-
-  return {
-    props: {
-      schoolsData
-    }, // will be passed to the page component as props
-  }
-}
-
-
-export default function Home({ schoolsData }:{ schoolsData:SchoolSearchResultType[] }) {
- 
-
-  const { load, schools } = useSchoolsContext()
-
-  load(schoolsData)
+  const { schools } = useSchoolsContext()
+  console.log({schools})
 
   return (
     <BasicLayout>
       <div className="page-container">
-        <pre>{JSON.stringify({schools}, null, 4)}</pre>
+        <div
+        className={styles.school_card_container}>
+          {schools?.map(school => (
+            <SchoolCard key={school['school.id']} school={school} />
+          ))}
+        </div>
       </div>
     </BasicLayout>
   )
