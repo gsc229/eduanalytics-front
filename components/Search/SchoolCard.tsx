@@ -6,27 +6,30 @@ import Typography from '@material-ui/core/Typography'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
-import { SchoolSearchResultType } from '../../src/store'
+import { SchoolDataType } from '../../src/store'
 
-const useStyles = makeStyles({
-  root: {
-    width: 200,
-    margin: 10,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+const useStyles = makeStyles(theme => (
+  {
+    root: {
+      width: 200,
+      margin: 10,
+      maxHeight: 300
+    },
+    bullet: {
+      display: 'inline-block',
+      margin: '0 2px',
+      transform: 'scale(0.8)',
+    },
+    title: {
+      fontSize: 14,
+    },
+    pos: {
+      marginBottom: 12,
+    },
+  }
+));
 
-function SchoolCard({ school }: { school:SchoolSearchResultType }) {
+function SchoolCard({ school }: { school:SchoolDataType }) {
 
   const classes = useStyles();
 
@@ -35,24 +38,23 @@ function SchoolCard({ school }: { school:SchoolSearchResultType }) {
       <CardContent>
         <Typography className={classes.title} color="textSecondary" gutterBottom>
         <Typography variant="h5" component="h2">
-          { school["school.name"] }
+          { school.school.name }
         </Typography>
-          { school["school.alias"]?.length >= 30 ? school['school.alias'].substring(0, 30) + "..." : school['school.alias'] }
+          { school.school.alias? school.school.alias?.substring(0, 30) + "..." : school.school.alias }
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          { school["school.city"] }
+          { school.school.city }
         </Typography>
         <Typography variant="body2" component="p">
-          { school['school.state'] }
+          { school.school.state }
         </Typography>
       </CardContent>
       <CardActions>
-        <Link href={`/school-detail/${school['school.name'].replace(/ /g, "-")}`} >
+        <Link href={`/school-detail/${school.school.name.replace(/ /g, "-")}`} >
           <a style={{textDecoration: "none"}} >
             <Button>See Data</Button>
           </a>
         </Link>
-        
       </CardActions>
     </Card>
   )

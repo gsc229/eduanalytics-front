@@ -16,11 +16,12 @@ export default function Home() {
         <div
         className={styles.school_card_container}>
           {schools?.map((school, idx) => {
+            console.log(school.id)
             return <SchoolCard key={school.id} school={school} />
           })}
         </div>
       }
-      {isSearching && <CircularIndeterminate /> }
+      {isSearching && <div style={{marginTop: "20%"}}><CircularIndeterminate  /></div> }
       </div>
     </BasicLayout>
   )

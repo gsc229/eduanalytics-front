@@ -1,30 +1,30 @@
-import { bool } from "prop-types";
 import * as React from "react"
+import { SchoolType, RaceEthnicityType, ProgramPercentageType, SchoolIdType, SizeType  } from "./typedefs"
 
-export interface SchoolSearchResultType {
-  id: number
-  "school.name": string
-  "school.alias": string
-  "school.city": string
-  "school.state":	string
-  "school.zip":	string
-  "school.school_url":	string
-  "latest.student.size": number
-  "latest.student.demographics.race_ethnicity": RaceEthnicityType<string>[],
-  "latest.academics.program_percentage": ProgramType<string>[]
-}
+export interface SchoolDataType {
+  id: SchoolIdType
+  school: SchoolType
+  race_ethnicity: RaceEthnicityType
+  program_percentage: ProgramPercentageType
+  size: SizeType
 
-export interface RaceEthnicityType<T> {
-  race: T
-}
-
-export interface ProgramType<T> {
-  program: T
 }
 
 
-export const useSchools = ( initial:SchoolSearchResultType[] ) => {
-  const [schools, schoolsSet] = React.useState<SchoolSearchResultType[]>(initial)
+const normalizeData = (schools:any) => {
+  return schools.map((school:any) => {
+      const normalizedSchool = { id: null, school: null, program_percentage: null, race_ethnicity: null, size: null }
+      normalizedSchool.id = school.id
+      normalizedSchool.school = school.school
+      normalizedSchool.program_percentage = school.latest.academics.program_percentage
+      normalizedSchool.race_ethnicity = school.latest.student.demographics.race_ethnicity,
+      normalizedSchool.size = school.latest.student.size
+      return normalizedSchool
+  })
+}
+
+export const useSchools = ( initial:SchoolDataType[] ) => {
+  const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
   const [isSearching, setIsSearching] = React.useState(false);
   const [currentSchool, currentSchoolSet] = React.useState("")
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
@@ -37,8 +37,8 @@ export const useSchools = ( initial:SchoolSearchResultType[] ) => {
     currentSchoolSet,
     isSearching,
     setIsSearching,
-    load(fetchedSchools: SchoolSearchResultType[]){
-      schoolsSet(fetchedSchools)
+    load(fetchedSchools: SchoolDataType[]){
+      schoolsSet(normalizeData(fetchedSchools))
     }
   }
 

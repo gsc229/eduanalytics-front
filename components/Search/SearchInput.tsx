@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, {useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from '../../utils/axiosGovRequest.js'
 import TextField from '@material-ui/core/TextField'
 import Autocomplete from '@material-ui/lab/Autocomplete'
@@ -24,8 +24,6 @@ const useStyles = makeStyles(theme => ({
     margin: "auto"
   }
 }))
-
-
 
 export default function SearchInput({}) {
 
@@ -66,14 +64,15 @@ export default function SearchInput({}) {
     return axios()
       .get("/", {
         params: {
-          "api_key": apiKey,
+          api_key: apiKey,
           "school.name": name,
-          "per_page": 10,
-          _fields: "_fields=" + school_fields + latest_fields
+          per_page: 10,
+          keys_nested: true,
+          _fields: school_fields + latest_fields
         }
       })
       .then((r) => {
-        //console.log({r})
+        console.log({r})
         return r.data.results
       })
       .catch((error) => {
@@ -90,7 +89,7 @@ export default function SearchInput({}) {
         className={classes.input} 
         id="free-solo-demo"
         freeSolo
-        options={schools ? schools.map(option => option["school.name"]) : []}
+        options={schools ? schools.map(option => option.school.name) : []}
         renderInput={(params) => (
           <TextField
           onChange={(e) => setSchoolName(e.currentTarget.value)}
