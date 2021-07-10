@@ -27,29 +27,20 @@ const SchoolDetail = () => {
 
   return (
     <BasicLayout>
-      <div className="page-container">
+      <div className="school-detail-page page-container">
         <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Paper className={classes.paper}>{currentSchool?.school.name}</Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} lg={6}>
             <Paper className={classes.paper}>xs=12 sm=6</Paper>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} lg={6}>
             <Paper className={classes.paper}>xs=12 sm=6</Paper>
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>{currentSchool?.school.name}</Paper>
           </Grid>
         </Grid>
       </div>
