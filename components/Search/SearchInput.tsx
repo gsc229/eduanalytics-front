@@ -1,9 +1,10 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
+import { useAsyncDebounce } from 'react-table'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core';
-
+import { SchoolSearchResultType, useSchoolsContext } from '../../src/store';
 
 const useStyles = makeStyles(theme => ({
   inputTextField: {
@@ -25,6 +26,9 @@ const useStyles = makeStyles(theme => ({
 export default function SearchInput() {
 
   const classes = useStyles()
+
+  const { schools, load } = useSchoolsContext()
+
 
   return (
     <div className={classes.inputDiv}>

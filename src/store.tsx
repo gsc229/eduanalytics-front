@@ -1,6 +1,6 @@
 import * as React from "react"
 
-export interface SchoolType {
+export interface SchoolSearchResultType {
   id: number
   name: string
   alias: string
@@ -12,8 +12,8 @@ export interface SchoolType {
 }
 
 
-export const useSchools = ( initial:SchoolType[] ) => {
-  const [schools, schoolsSet] = React.useState<SchoolType[]>(initial)
+export const useSchools = ( initial:SchoolSearchResultType[] ) => {
+  const [schools, schoolsSet] = React.useState<SchoolSearchResultType[]>(initial)
   const [currentSchool, currentSchoolSet] = React.useState("")
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
@@ -23,7 +23,7 @@ export const useSchools = ( initial:SchoolType[] ) => {
     drawerOpen,
     setDrawerOpen,
     currentSchoolSet,
-    load(fetchedSchools: SchoolType[]){
+    load(fetchedSchools: SchoolSearchResultType[]){
       schoolsSet(fetchedSchools)
     }
   }

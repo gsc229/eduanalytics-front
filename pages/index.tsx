@@ -2,11 +2,11 @@ import styles from '../styles/Home.module.scss'
 import axiosRequest from '../utils/axiosRequest'
 import BasicLayout from '../layouts/BasicLayout'
 import Container from '@material-ui/core/Container'
-import { useSchoolsContext, SchoolType } from '../src/store'
+import { useSchoolsContext, SchoolSearchResultType } from '../src/store'
 
 export async function getServerSideProps() {
 
-  let schoolsData:SchoolType[] = []
+  let schoolsData:SchoolSearchResultType[] = []
 
   const resposne = await axiosRequest().get("/", {
     params: {
@@ -26,7 +26,7 @@ export async function getServerSideProps() {
 }
 
 
-export default function Home({ schoolsData }:{ schoolsData:SchoolType[] }) {
+export default function Home({ schoolsData }:{ schoolsData:SchoolSearchResultType[] }) {
  
 
   const { load, schools } = useSchoolsContext()
