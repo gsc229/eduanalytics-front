@@ -34,7 +34,12 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
 
   const classes = useStyles();
 
-  const { currentSchoolSet } = useSchoolsContext()
+  const { currentSchoolSet, setOnSearchPage } = useSchoolsContext()
+
+  const handleSchoolClick = () => {
+    setOnSearchPage(false)
+    currentSchoolSet(school)
+  }
 
   return (
     <Card className={classes.root}>
@@ -56,7 +61,7 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
         <Link
         href={`/school-detail/${school.school.name.replace(/ /g, "-")}`} >
           <a style={{textDecoration: "none"}} >
-            <Button onClick={() => currentSchoolSet(school) }>See Data</Button>
+            <Button onClick={handleSchoolClick}>See Data</Button>
           </a>
         </Link>
       </CardActions>

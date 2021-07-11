@@ -42,7 +42,7 @@ export default function SearchInput({}) {
   // Search term
   const [ schoolName, setSchoolName ] = useState("")
   // API search results & Searching status (whether there is pending API request)
-  const { schools, loadNewData, isSearching, setIsSearching, currentSchoolSet, currentSchool } = useSchoolsContext()
+  const { schools, loadNewData, isSearching, setIsSearching, onSearchPage, setOnSearchPage, currentSchool } = useSchoolsContext()
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
@@ -89,20 +89,14 @@ export default function SearchInput({}) {
       })
   }
 
-  const handleListSelect = (event) => {
-    console.log({eventTarget: event.target.value})
-    const sName = event
-
-    /* if(event){
-      currentSchoolSet(schools.find(s => s.school.name === event))
-      router.push(`/school-detail/${event.replace(/ /g, "-")}`)
-    } */
-
+  const handleBackToSearch = () => {
+    setOnSearchPage(true)
+    router.push("/")
   }
 
   return (
     <Fragment>
-      {!currentSchool &&
+      {onSearchPage &&
         <div className={classes.inputDiv}>
           <Autocomplete
             onInputChange={(e, value) => setSchoolName(value)}
@@ -120,9 +114,9 @@ export default function SearchInput({}) {
           {isSearching && <LinearIndeterminate />}
         </div>
       }
-     {currentSchool &&
+     {!onSearchPage &&
         <Button 
-        onClick={() => router.push("/")}
+        onClick={handleBackToSearch}
         className={classes.backButon} >
           <ArrowBackIcon className={classes.backArrow} />
           Back To Search

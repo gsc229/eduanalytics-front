@@ -26,12 +26,23 @@ const normalizeData = (schools:any) => {
   return nomralizedSchools
 }
 
+const getLSCurrentSchool = () => {
+  if(typeof window !== "undefined"){
+    const lsSchool = localStorage.getItem("currentSchool")
+    if(lsSchool){
+      return JSON.parse(lsSchool)
+    }
+  }
+
+  return undefined
+}
 
 export const useSchools = ( initial:SchoolDataType[] ) => {
 
   const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
   const [isSearching, setIsSearching] = React.useState(false)
-  const [currentSchool, currentSchoolSet] = React.useState<SchoolDataType>()
+  const [onSearchPage, setOnSearchPage] = React.useState(true)
+  const [currentSchool, setCurrentSchool] = React.useState(getLSCurrentSchool)
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
   return {
@@ -40,9 +51,14 @@ export const useSchools = ( initial:SchoolDataType[] ) => {
     currentSchool, 
     drawerOpen,
     setDrawerOpen,
-    currentSchoolSet,
+    onSearchPage,
+    setOnSearchPage,
     isSearching,
     setIsSearching,
+    currentSchoolSet(school:any){
+      localStorage.setItem("currentSchool", JSON.stringify(school))
+      setCurrentSchool(school)
+    },
     loadNewData(fetchedSchools: SchoolDataType[]){
       schoolsSet(normalizeData(fetchedSchools))
     },

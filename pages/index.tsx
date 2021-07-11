@@ -10,7 +10,8 @@ export default function Home() {
   const { schools, isSearching, currentSchoolSet, loadFromLocalStorage } = useSchoolsContext()
   
   useEffect(() => {
-    currentSchoolSet(undefined)
+
+    
 
     const lsSchools = localStorage.getItem("schools")
 

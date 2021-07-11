@@ -1,11 +1,13 @@
 import React from 'react'
 import BasicLayout from '../../layouts/BasicLayout'
 import { useSchoolsContext } from '../../src/store'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Grid from '@material-ui/core/Grid'
 import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
+import TopPaper from '../../components/SchoolDetail/TopPaper'
+import { prepData } from '../../components/SchoolDetail/prepDonutData'
 import data from '../../components/SchoolDetail/reTestData.json'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,20 +31,19 @@ const SchoolDetail = () => {
 
   const classes = useStyles()
 
-
   return (
     <BasicLayout>
       <div className="school-detail-page page-container">
         <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Paper className={classes.paper}><div>{currentSchool?.school.name}</div></Paper>
+            <TopPaper classes={classes} currentSchool={currentSchool}  />
           </Grid>
           <Grid item xs={12} md={6}>
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  <RaceEthDonut data={data} />
+                  <RaceEthDonut data={prepData(currentSchool.race_ethnicity)} />
                 </div>
               </div>
             </Paper>
@@ -51,7 +52,7 @@ const SchoolDetail = () => {
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  <ProgramDonut data={data} />
+                  <ProgramDonut data={prepData(currentSchool.program_percentage)} />
                 </div>
               </div>
             </Paper>

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const SideDrawer = () => {
-  const { drawerOpen, setDrawerOpen, currentSchool } = useSchoolsContext()
+  const { drawerOpen, setDrawerOpen, currentSchool, onSearchPage } = useSchoolsContext()
   const classes = useStyles(currentSchool)
   const theme = useTheme()
 
@@ -51,17 +51,17 @@ const SideDrawer = () => {
       <SearchInput />
       <Divider />
         <List>
-          <ListItem disabled={!currentSchool} className={classes.listItem} button>
+          <ListItem disabled={onSearchPage} className={classes.listItem} button>
               <ListItemIcon className={classes.listIcon} > <PictureAsPdfIcon />
                 </ListItemIcon>
               <ListItemText primary="PDF" />
             </ListItem>
-            <ListItem disabled={!currentSchool} className={classes.listItem} button>
+            <ListItem disabled={onSearchPage} className={classes.listItem} button>
               <ListItemIcon className={classes.listIcon} > <GetAppIcon />
                 </ListItemIcon>
               <ListItemText primary="{ JSON }" />
             </ListItem>
-            <ListItem disabled={!currentSchool} className={classes.listItem} button>
+            <ListItem disabled={onSearchPage} className={classes.listItem} button>
               <ListItemIcon className={classes.listIcon} > <PrintIcon />
                 </ListItemIcon>
               <ListItemText primary="Print" />
