@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from '@material-ui/core/Card'
-import Link from 'next/link'
+import router from 'next/router'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import CardActions from '@material-ui/core/CardActions'
@@ -12,9 +12,10 @@ import { useSchoolsContext } from '../../src/store'
 const useStyles = makeStyles(theme => (
   {
     root: {
-      width: 200,
-      margin: 10,
-      maxHeight: 300
+      width: 250,
+      margin: theme.spacing(2),
+      minHeight: 400,
+      
     },
     bullet: {
       display: 'inline-block',
@@ -40,31 +41,30 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
     setOnSearchPage(false)
     currentSchoolSet(school)
     setIsSearching(true)
+    router.push(`/school-detail/${school.school.name.replace(/ /g, "-")}`)
   }
 
   return (
     <Card className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-        <Typography variant="h5" component="h2">
+        <Typography style={{cursor: "pointer"}} onClick={handleSchoolClick} variant="h5" component="h2">
           { school.school.name }
         </Typography>
+        <Typography className={classes.title} color="textSecondary">
           { school.school.alias? school.school.alias?.substring(0, 30) + "..." : school.school.alias }
         </Typography>
+
         <Typography className={classes.pos} color="textSecondary">
           { school.school.city }
         </Typography>
+
         <Typography variant="body2" component="p">
           { school.school.state }
         </Typography>
+
       </CardContent>
       <CardActions>
-        <Link
-        href={`/school-detail/${school.school.name.replace(/ /g, "-")}`} >
-          <a style={{textDecoration: "none"}} >
-            <Button onClick={handleSchoolClick}>See Data</Button>
-          </a>
-        </Link>
+        <Button onClick={handleSchoolClick}>See Data</Button>
       </CardActions>
     </Card>
   )

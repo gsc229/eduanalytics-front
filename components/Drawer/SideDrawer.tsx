@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import { makeStyles, useTheme } from '@material-ui/core'
+import Typography from "@material-ui/core/Typography"
 import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
 import { PdfPrint } from '../SchoolDetail/PdfPrint'
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   },
   listIcon: {
     color: "inherit"
+  },
+  info: {
+    color: "darkgray",
+    marginTop: 10
   }
 }))
 
@@ -46,7 +51,7 @@ const SideDrawer = () => {
   const theme = useTheme()
 
   const downloadJSON = () => {
-    //exportFromJSON({ data: currentSchool, fileName: currentSchool.school })
+    exportFromJSON({ data: currentSchool || [], fileName: currentSchool?.school.name || "", exportType: "json" })
   }
 
   const drawer = (
@@ -55,12 +60,17 @@ const SideDrawer = () => {
       <SearchInput />
       <Divider />
         <List>
+        {onSearchPage && 
+        <Typography align="center" className={classes.info} variant="body2">
+          select a school to download data
+        </Typography>
+        }
           <PdfPrint classes={classes} onSearchPage={onSearchPage} /> {/* <-- ListItem */}
           <ListItem disabled={onSearchPage} className={classes.listItem} button>
             <ListItemIcon onClick={downloadJSON} className={classes.listIcon} > 
               <GetAppIcon />
             </ListItemIcon>
-            <ListItemText primary="{ JSON }" />
+            <ListItemText onClick={downloadJSON} primary="{ JSON }" />
           </ListItem>
 
         </List>
