@@ -17,14 +17,16 @@ a {
 
 .page-wrapper{
   width: 100%;
+  min-height: 100vh;
 }
 
 .page-container{
   min-height: 100vh;
-  padding: 0 0.5rem;
+  height: fit-content;
+  padding: 0 0 5rem;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  background-color: lightblue;
+  background-color: #336A6A;
 }
+
+@import '../pages/school-detail/school_detal_page.scss'

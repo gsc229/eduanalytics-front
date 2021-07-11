@@ -1,37 +1,72 @@
-import { bool } from "prop-types";
 import * as React from "react"
+import { SchoolType, RaceEthnicityType, ProgramPercentageType, SchoolIdType, SizeType  } from "./typedefs"
 
-export interface SchoolSearchResultType {
-  "school.id": number
-  "school.name": string
-  "school.alias": string
-  "school.city": string
-  "school.state":	string
-  "school.zip":	string
-  "school.school_url":	string
-  "latest.student.size": number
+export interface SchoolDataType {
+  id: SchoolIdType
+  school: SchoolType
+  race_ethnicity: RaceEthnicityType
+  program_percentage: ProgramPercentageType
+  size: SizeType
+
 }
 
+const normalizeData = (schools:any) => {
+  const nomralizedSchools = schools.map((school:any) => {
+      const normalizedSchool = { id: null, school: null, program_percentage: null, race_ethnicity: null, size: null }
+      normalizedSchool.id = school.id
+      normalizedSchool.school = school.school
+      normalizedSchool.program_percentage = school.latest.academics.program_percentage
+      normalizedSchool.race_ethnicity = school.latest.student.demographics.race_ethnicity,
+      normalizedSchool.size = school.latest.student.size
+      return normalizedSchool
+  })
 
-export const useSchools = ( initial:SchoolSearchResultType[] ) => {
-  const [schools, schoolsSet] = React.useState<SchoolSearchResultType[]>(initial)
-  const [isSearching, setIsSearching] = React.useState(false);
-  const [currentSchool, currentSchoolSet] = React.useState("")
+  localStorage.setItem("schools", JSON.stringify(nomralizedSchools))
+
+  return nomralizedSchools
+}
+
+const getLSCurrentSchool = () => {
+  if(typeof window !== "undefined"){
+    const lsSchool = localStorage.getItem("currentSchool")
+    if(lsSchool){
+      return JSON.parse(lsSchool)
+    }
+  }
+
+  return undefined
+}
+
+export const useSchools = ( initial:SchoolDataType[] ) => {
+
+  const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
+  const [isSearching, setIsSearching] = React.useState(false)
+  const [onSearchPage, setOnSearchPage] = React.useState(true)
+  const [currentSchool, setCurrentSchool] = React.useState(getLSCurrentSchool)
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
 
   return {
     schools,
+    schoolsSet,
     currentSchool, 
+    setCurrentSchool,
     drawerOpen,
     setDrawerOpen,
-    currentSchoolSet,
+    onSearchPage,
+    setOnSearchPage,
     isSearching,
     setIsSearching,
-    load(fetchedSchools: SchoolSearchResultType[]){
-      schoolsSet(fetchedSchools)
+    currentSchoolSet(school:any){
+      localStorage.setItem("currentSchool", JSON.stringify(school))
+      setCurrentSchool(school)
+    },
+    loadNewData(fetchedSchools: SchoolDataType[]){
+      schoolsSet(normalizeData(fetchedSchools))
+    },
+    loadFromLocalStorage(schoolData:SchoolDataType[]){
+      schoolsSet(schoolData)
     }
   }
-
 }
 
 type UseSchoolsType = ReturnType<typeof useSchools>

@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       display: 'flex',
       '& > * + *': {
-        marginLeft: theme.spacing(2),
-      },
+        marginLeft: theme.spacing(2)
+      }
     },
   }),
 )
@@ -18,7 +18,7 @@ export default function CircularIndeterminate() {
 
   return (
     <div className={classes.root}>
-      <CircularProgress />
+      <CircularProgress color="secondary" />
     </div>
   )
 }
