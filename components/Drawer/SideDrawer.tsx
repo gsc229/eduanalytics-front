@@ -12,7 +12,8 @@ import GetAppIcon from '@material-ui/icons/GetApp'
 import { makeStyles, useTheme } from '@material-ui/core'
 import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { PdfPrint } from '../SchoolDetail/PdfPrint'
+
 const drawerWidth = 240
 
 
@@ -51,21 +52,21 @@ const SideDrawer = () => {
       <SearchInput />
       <Divider />
         <List>
+          <PdfPrint classes={classes} onSearchPage={onSearchPage} />
+          {/* <ListItem disabled={onSearchPage} className={classes.listItem} button>
+          <ListItemIcon className={classes.listIcon} > 
+            <PictureAsPdfIcon />
+            </ListItemIcon>
+            <ListItemText primary="Print/Download" />
+          </ListItem> */}
+
           <ListItem disabled={onSearchPage} className={classes.listItem} button>
-              <ListItemIcon className={classes.listIcon} > <PictureAsPdfIcon />
-                </ListItemIcon>
-              <ListItemText primary="PDF" />
-            </ListItem>
-            <ListItem disabled={onSearchPage} className={classes.listItem} button>
-              <ListItemIcon className={classes.listIcon} > <GetAppIcon />
-                </ListItemIcon>
-              <ListItemText primary="{ JSON }" />
-            </ListItem>
-            <ListItem disabled={onSearchPage} className={classes.listItem} button>
-              <ListItemIcon className={classes.listIcon} > <PrintIcon />
-                </ListItemIcon>
-              <ListItemText primary="Print" />
-            </ListItem>
+            <ListItemIcon className={classes.listIcon} > 
+              <GetAppIcon />
+            </ListItemIcon>
+            <ListItemText primary="{ JSON }" />
+          </ListItem>
+
         </List>
       <Divider />
     </div>
