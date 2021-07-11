@@ -4,9 +4,10 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    height: fit-content;
     .pie-wrapper{
       height: 500px;
-      width: 500px;
+      width: 100%;
     }
   }
 }

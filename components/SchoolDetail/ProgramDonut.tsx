@@ -108,7 +108,7 @@ export const ProgramDonut = ({ data /* see data tab */ }:{data:any}) => (
                 itemWidth: 100,
                 itemHeight: 18,
                 itemTextColor: '#999',
-                itemDirection: 'left-to-right',
+                itemDirection: 'top-to-bottom',
                 itemOpacity: 1,
                 symbolSize: 18,
                 symbolShape: 'circle',

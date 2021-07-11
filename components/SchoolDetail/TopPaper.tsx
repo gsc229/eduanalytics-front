@@ -7,7 +7,7 @@ import Link from '@material-ui/core/Link'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
-function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType}) {
+function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType | undefined}) {
 
   
 
