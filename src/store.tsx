@@ -37,6 +37,10 @@ const getLSCurrentSchool = () => {
   return undefined
 }
 
+
+
+
+
 export const useSchools = ( initial:SchoolDataType[] ) => {
 
   const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
@@ -44,12 +48,15 @@ export const useSchools = ( initial:SchoolDataType[] ) => {
   const [onSearchPage, setOnSearchPage] = React.useState(true)
   const [currentSchool, setCurrentSchool] = React.useState(getLSCurrentSchool)
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
+  const [ componentRef, setComponentRef] = React.useState<React.MutableRefObject<null>>()
 
   return {
     schools,
     schoolsSet,
     currentSchool, 
     setCurrentSchool,
+    componentRef,
+    setComponentRef,
     drawerOpen,
     setDrawerOpen,
     onSearchPage,

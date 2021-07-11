@@ -1,13 +1,13 @@
 import { ProgramPercentageType, RaceEthnicityType } from '../../src/typedefs'
 
-export const prepData = (dataObj:any) => {
+export const prepData = (dataObj) => {
   
-  const programData:any = []
+  const programData = []
 
 
   Object.entries(dataObj).forEach(([key, value]) => {
 
-    if(value !== null){
+    if(value !== null && value > 0){
 
       const datum = {
         id: key,
