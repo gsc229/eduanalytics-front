@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => (
       width: 250,
       margin: theme.spacing(2),
       minHeight: 400,
-      
     },
     bullet: {
       display: 'inline-block',
@@ -45,7 +44,7 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
   }
 
   return (
-    <Card className={classes.root}>
+    <Card  className={classes.root}>
       <CardContent>
         <Typography style={{cursor: "pointer"}} onClick={handleSchoolClick} variant="h5" component="h2">
           { school.school.name }

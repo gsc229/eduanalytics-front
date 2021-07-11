@@ -36,6 +36,9 @@ function PageContent() {
     setComponentRef(componentRef)
   }, [componentRef]);
 
+
+
+
   const { raceData, programData } = useMemo(() => {
     const raceData = prepData(currentSchool?.race_ethnicity)
     const programData = prepData(currentSchool?.program_percentage)
