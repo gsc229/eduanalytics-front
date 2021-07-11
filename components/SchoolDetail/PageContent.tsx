@@ -36,7 +36,16 @@ function PageContent() {
     setComponentRef(componentRef)
   }, [componentRef]);
 
-  
+  const { raceData, programData } = useMemo(() => {
+    const raceData = prepData(currentSchool?.race_ethnicity)
+    const programData = prepData(currentSchool?.program_percentage)
+
+    return {
+      raceData,
+      programData
+    }
+
+  }, [currentSchool])
 
   return (
     <div ref={componentRef} className="school-detail-page page-container">
@@ -49,7 +58,7 @@ function PageContent() {
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  {currentSchool && <RaceEthDonut data={prepData(currentSchool.race_ethnicity)} />}
+                  {currentSchool && <RaceEthDonut data={raceData} />}
                 </div>
               </div>
             </Paper>
@@ -58,7 +67,7 @@ function PageContent() {
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  {currentSchool && <ProgramDonut data={prepData(currentSchool.program_percentage)} />}
+                  {currentSchool && <ProgramDonut data={programData} />}
                 </div>
               </div>
             </Paper>

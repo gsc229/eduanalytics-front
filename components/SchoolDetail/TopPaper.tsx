@@ -11,7 +11,17 @@ import Grid from '@material-ui/core/Grid'
 
 function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType | undefined}) {
 
-  
+  const getLink = () => {
+    const regex1 = new RegExp("http*")
+    const regex2 = new RegExp("https*")
+    const test1 = currentSchool ? regex1.test(currentSchool?.school.school_url) : false
+    const test2 = currentSchool ? regex2.test(currentSchool?.school.school_url) : false
+
+    if(test1 && test2) return currentSchool?.school.school_url
+
+    return currentSchool ? `https://${currentSchool.school.school_url}` : '/'
+
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -45,7 +55,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
       </Grid>
       <Grid spacing={1} justifyContent="center" container direction="row">
         <Grid justifyContent="center" alignContent="center" item>
-          <Button href={`https://${currentSchool?.school.school_url}`}>
+          <Button href={getLink()}>
             <LanguageIcon /> Website 
           </Button>
         </Grid>
