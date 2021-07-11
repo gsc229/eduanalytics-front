@@ -1,11 +1,9 @@
-import React, { forwardRef } from 'react'
+import React from 'react'
 import { SchoolDataType } from '../../src/store'
 import Typography from '@material-ui/core/Typography'
 import RoomIcon from '@material-ui/icons/Room'
 import LanguageIcon from '@material-ui/icons/Language'
-import ExtLink from '@material-ui/core/Link'
 import { Button } from '@material-ui/core'
-import Link from 'next/link'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
