@@ -49,6 +49,7 @@ export const useSchools = ( initial:SchoolDataType[] ) => {
     schools,
     schoolsSet,
     currentSchool, 
+    setCurrentSchool,
     drawerOpen,
     setDrawerOpen,
     onSearchPage,

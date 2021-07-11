@@ -34,11 +34,12 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
 
   const classes = useStyles();
 
-  const { currentSchoolSet, setOnSearchPage } = useSchoolsContext()
+  const { currentSchoolSet, setOnSearchPage, setIsSearching } = useSchoolsContext()
 
   const handleSchoolClick = () => {
     setOnSearchPage(false)
     currentSchoolSet(school)
+    setIsSearching(true)
   }
 
   return (

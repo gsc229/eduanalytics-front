@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import BasicLayout from '../../layouts/BasicLayout'
 import { useSchoolsContext } from '../../src/store'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
@@ -8,7 +8,8 @@ import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
 import TopPaper from '../../components/SchoolDetail/TopPaper'
 import { prepData } from '../../components/SchoolDetail/prepDonutData'
-import data from '../../components/SchoolDetail/reTestData.json'
+import router from 'next/router'
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,12 +28,24 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const SchoolDetail = () => {
 
-  const { currentSchool } = useSchoolsContext()
+  const { currentSchool, setIsSearching, setOnSearchPage } = useSchoolsContext()
 
   const classes = useStyles()
 
+
+  useEffect(() => {
+    setIsSearching(false)
+    setOnSearchPage(false)
+    if(!currentSchool) router.push("/")
+
+
+  }, [])
+
+
+
   return (
     <BasicLayout>
+     {currentSchool &&
       <div className="school-detail-page page-container">
         <div className={classes.root}>
         <Grid container spacing={3}>
@@ -62,8 +75,7 @@ const SchoolDetail = () => {
           </Grid>
         </Grid>
       </div>
-      {/* <pre style={{color: "white"}} className="pre">{JSON.stringify(currentSchool, null, 4)}</pre> */}
-      </div>
+      </div>}
     </BasicLayout>
   )
 }

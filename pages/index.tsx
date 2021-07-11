@@ -7,7 +7,7 @@ import CircularIndeterminate from '../components/Progress/CircularIndeterminate'
 
 export default function Home() {
 
-  const { schools, isSearching, currentSchoolSet, loadFromLocalStorage } = useSchoolsContext()
+  const { schools, isSearching, loadFromLocalStorage } = useSchoolsContext()
   
   useEffect(() => {
 

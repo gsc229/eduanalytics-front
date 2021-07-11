@@ -44,31 +44,37 @@ export const ProgramDonut = ({ data /* see data tab */ }:{data:any}) => (
         fill={[
             {
                 match: {
-                    id: 'ruby'
+                    id: 'social_science'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'c'
+                    id: 'resources'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'go'
+                    id: 'business_marketing'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'python'
+                    id: 'psychology'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'scala'
+                    id: 'visual_performing'
+                },
+                id: 'dots'
+            },
+            {
+                match: {
+                    id: 'ethnic_cultural_gender'
                 },
                 id: 'lines'
             },
@@ -80,13 +86,13 @@ export const ProgramDonut = ({ data /* see data tab */ }:{data:any}) => (
             },
             {
                 match: {
-                    id: 'elixir'
+                    id: 'computer'
                 },
                 id: 'lines'
             },
             {
                 match: {
-                    id: 'javascript'
+                    id: 'biological'
                 },
                 id: 'lines'
             }

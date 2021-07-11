@@ -44,43 +44,43 @@ export const RaceEthDonut = ({ data /* see data tab */ }:{data:any}) => (
         fill={[
             {
                 match: {
-                    id: 'ruby'
+                    id: 'hispanic'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'c'
+                    id: 'black'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'go'
+                    id: 'two_or_more'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'python'
+                    id: 'non_resident_alien'
                 },
                 id: 'dots'
             },
             {
                 match: {
-                    id: 'scala'
+                    id: 'asian'
                 },
                 id: 'lines'
             },
             {
                 match: {
-                    id: 'lisp'
+                    id: 'white'
                 },
                 id: 'lines'
             },
             {
                 match: {
-                    id: 'elixir'
+                    id: "unknown"
                 },
                 id: 'lines'
             },

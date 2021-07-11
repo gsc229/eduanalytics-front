@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid'
 
 function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType}) {
 
-  const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+  
 
   return (
     <Paper className={classes.paper}>
@@ -49,7 +49,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
           <Typography className={classes.root}>
             <Link
               href={currentSchool?.school.school_url}
-              onClick={preventDefault}
+              
             >
               Website
             </Link>
