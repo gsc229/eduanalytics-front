@@ -12,9 +12,9 @@ import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
 import { PdfPrint } from '../SchoolDetail/PdfPrint'
 import exportFromJSON from 'export-from-json'
+import { prepareCSV } from './prePareCSV'
 
 const drawerWidth = 240
-
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -44,9 +44,11 @@ const SideDrawer = () => {
   const { drawerOpen, setDrawerOpen, currentSchool, onSearchPage } = useSchoolsContext()
   const classes = useStyles()
   const theme = useTheme()
-
   const downloadJSON = () => {
-    //exportFromJSON({ data: currentSchool, fileName: currentSchool.school })
+    exportFromJSON({ data: currentSchool || [], fileName: currentSchool?.school.name || "", exportType: "json"})
+  }
+  const downloadCSV = () => {
+    exportFromJSON({ data: prepareCSV(currentSchool) || [], fileName: currentSchool?.school.name || "", exportType: "xls"})
   }
 
   const drawer = (
@@ -60,9 +62,20 @@ const SideDrawer = () => {
             <ListItemIcon onClick={downloadJSON} className={classes.listIcon} > 
               <GetAppIcon />
             </ListItemIcon>
-            <ListItemText primary="{ JSON }" />
+            <ListItemText onClick={downloadJSON} primary="{ JSON }" />
           </ListItem>
-
+          <ListItem disabled={onSearchPage} className={classes.listItem} button>
+            <ListItemIcon onClick={downloadCSV} className={classes.listIcon} > 
+              <GetAppIcon />
+            </ListItemIcon>
+            <ListItemText onClick={downloadCSV} primary="CSV" />
+          </ListItem>
+          <ListItem disabled={onSearchPage} className={classes.listItem} button>
+            <ListItemIcon onClick={downloadJSON} className={classes.listIcon} > 
+              <GetAppIcon />
+            </ListItemIcon>
+            <ListItemText onClick={downloadJSON} primary="{ JSON }" />
+          </ListItem>
         </List>
       <Divider />
     </div>
