@@ -6,13 +6,13 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
-import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf'
-import PrintIcon from '@material-ui/icons/Print'
 import GetAppIcon from '@material-ui/icons/GetApp'
 import { makeStyles, useTheme } from '@material-ui/core'
+import Typography from "@material-ui/core/Typography"
 import { useSchoolsContext } from '../../src/store'
 import SearchInput from '../Search/SearchInput'
 import { PdfPrint } from '../SchoolDetail/PdfPrint'
+import exportFromJSON from 'export-from-json'
 
 const drawerWidth = 240
 
@@ -38,13 +38,21 @@ const useStyles = makeStyles((theme) => ({
   },
   listIcon: {
     color: "inherit"
+  },
+  info: {
+    color: "darkgray",
+    marginTop: 10
   }
 }))
 
 const SideDrawer = () => {
   const { drawerOpen, setDrawerOpen, currentSchool, onSearchPage } = useSchoolsContext()
-  const classes = useStyles(currentSchool)
+  const classes = useStyles()
   const theme = useTheme()
+
+  const downloadJSON = () => {
+    exportFromJSON({ data: currentSchool || [], fileName: currentSchool?.school.name || "", exportType: "json" })
+  }
 
   const drawer = (
     <div>
@@ -52,19 +60,17 @@ const SideDrawer = () => {
       <SearchInput />
       <Divider />
         <List>
-          <PdfPrint classes={classes} onSearchPage={onSearchPage} />
-          {/* <ListItem disabled={onSearchPage} className={classes.listItem} button>
-          <ListItemIcon className={classes.listIcon} > 
-            <PictureAsPdfIcon />
-            </ListItemIcon>
-            <ListItemText primary="Print/Download" />
-          </ListItem> */}
-
+        {onSearchPage && 
+        <Typography align="center" className={classes.info} variant="body2">
+          select a school to download data
+        </Typography>
+        }
+          <PdfPrint classes={classes} onSearchPage={onSearchPage} /> {/* <-- ListItem */}
           <ListItem disabled={onSearchPage} className={classes.listItem} button>
-            <ListItemIcon className={classes.listIcon} > 
+            <ListItemIcon onClick={downloadJSON} className={classes.listIcon} > 
               <GetAppIcon />
             </ListItemIcon>
-            <ListItemText primary="{ JSON }" />
+            <ListItemText onClick={downloadJSON} primary="{ JSON }" />
           </ListItem>
 
         </List>

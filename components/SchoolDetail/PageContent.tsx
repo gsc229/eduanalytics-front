@@ -1,11 +1,10 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useMemo } from 'react'
 import { useSchoolsContext } from '../../src/store'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
-import { ProgramDonutCanvas } from '../../components/SchoolDetail/ProgramDonutCanvas'
 import TopPaper from '../../components/SchoolDetail/TopPaper'
 import { prepData } from '../../components/SchoolDetail/prepDonutData'
 
@@ -25,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+
+
 function PageContent() {
 
   const componentRef = useRef(null);
@@ -35,6 +36,8 @@ function PageContent() {
     setComponentRef(componentRef)
   }, [componentRef]);
 
+  
+
   return (
     <div ref={componentRef} className="school-detail-page page-container">
         <div className={classes.root}>
@@ -42,7 +45,7 @@ function PageContent() {
           <Grid item xs={12}>
             <TopPaper classes={classes} currentSchool={currentSchool}  />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">
@@ -51,7 +54,7 @@ function PageContent() {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
               <div className="pie-container" >
                 <div className="pie-wrapper">

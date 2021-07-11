@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { SchoolDataType } from '../../src/store'
 import Typography from '@material-ui/core/Typography'
 import RoomIcon from '@material-ui/icons/Room'
 import LanguageIcon from '@material-ui/icons/Language'
-import Link from '@material-ui/core/Link'
+import ExtLink from '@material-ui/core/Link'
+import { Button } from '@material-ui/core'
+import Link from 'next/link'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 
-function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType}) {
+function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolDataType | undefined}) {
 
   
 
@@ -42,18 +44,10 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
         </Grid>
       </Grid>
       <Grid spacing={1} justifyContent="center" container direction="row">
-        <Grid item>
-          <LanguageIcon />
-        </Grid>
-        <Grid item>
-          <Typography className={classes.root}>
-            <Link
-              href={currentSchool?.school.school_url}
-              
-            >
-              Website
-            </Link>
-          </Typography>
+        <Grid justifyContent="center" alignContent="center" item>
+          <Button href={`https://${currentSchool?.school.school_url}`}>
+            <LanguageIcon /> Website 
+          </Button>
         </Grid>
       </Grid>
     </Paper>

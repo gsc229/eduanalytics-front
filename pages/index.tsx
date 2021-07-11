@@ -4,21 +4,19 @@ import BasicLayout from '../layouts/BasicLayout'
 import { useSchoolsContext } from '../src/store'
 import SchoolCard from '../components/Search/SchoolCard'
 import CircularIndeterminate from '../components/Progress/CircularIndeterminate'
+import Grid from '@material-ui/core/Grid'
 
 export default function Home() {
 
   const { schools, isSearching, loadFromLocalStorage } = useSchoolsContext()
   
   useEffect(() => {
-
-    
-
     const lsSchools = localStorage.getItem("schools")
 
     if(lsSchools){
       return loadFromLocalStorage(JSON.parse(lsSchools))
     }
-
+    
     return loadFromLocalStorage([])
   }, [])
 
@@ -26,12 +24,14 @@ export default function Home() {
     <BasicLayout>
       <div className="page-container">
       {!isSearching &&
-        <div
+        <Grid container
         className={styles.school_card_container}>
           {schools?.map((school, idx) => (
-            <SchoolCard key={school.id} school={school} />
+            <Grid item key={school.id}>
+              <SchoolCard school={school} />
+            </Grid>
           ))}
-        </div>
+        </Grid>
       }
       {isSearching && <div style={{marginTop: "20%"}}><CircularIndeterminate  /></div> }
       </div>
