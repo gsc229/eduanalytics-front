@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
+import EarningsChart from './EarningsChart'
 import TopPaper from '../../components/SchoolDetail/TopPaper'
 import { prepData } from '../../components/SchoolDetail/prepDonutData'
 import Typography from '@material-ui/core/Typography'
@@ -39,8 +40,6 @@ function PageContent() {
   useEffect(() => {
     setComponentRef(componentRef)
   }, [componentRef]);
-
-
 
 
   const { raceData, programData } = useMemo(() => {
@@ -85,6 +84,20 @@ function PageContent() {
               <div className="pie-container" >
                 <div className="pie-wrapper">
                   {currentSchool && <ProgramDonut data={programData} />}
+                </div>
+              </div>
+            </Paper>
+          </Grid>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
+            <Paper className={classes.paper}>
+              <Typography>
+                  Programs
+              </Typography>
+              <div className="pie-container" >
+                <div className="pie-wrapper">
+                  {currentSchool && <EarningsChart />}
                 </div>
               </div>
             </Paper>
