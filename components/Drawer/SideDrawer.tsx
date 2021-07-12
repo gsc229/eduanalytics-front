@@ -45,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+
+
 const SideDrawer = () => {
   const { drawerOpen, setDrawerOpen, currentSchool, onSearchPage } = useSchoolsContext()
   const classes = useStyles()

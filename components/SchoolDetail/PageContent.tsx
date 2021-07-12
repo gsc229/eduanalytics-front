@@ -5,8 +5,10 @@ import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
+import EarningsChart from './EarningsChart'
 import TopPaper from '../../components/SchoolDetail/TopPaper'
 import { prepData } from '../../components/SchoolDetail/prepDonutData'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme: Theme) =>
 
@@ -21,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       margin: theme.spacing(1)
     },
+    topPaperText: {
+      width: "fit-content"
+    }
   }),
 );
 
@@ -36,39 +41,70 @@ function PageContent() {
     setComponentRef(componentRef)
   }, [componentRef]);
 
-  
+
+  const { raceData, programData } = useMemo(() => {
+    const raceData = prepData(currentSchool?.race_ethnicity)
+    const programData = prepData(currentSchool?.program_percentage)
+
+    return {
+      raceData,
+      programData
+    }
+
+  }, [currentSchool])
 
   return (
     <div ref={componentRef} className="school-detail-page page-container">
-        <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+      <div className={classes.root}>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid  xs={10}>
             <TopPaper classes={classes} currentSchool={currentSchool}  />
           </Grid>
-          <Grid item xs={12}>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
             <Paper className={classes.paper}>
+            <Typography>
+                  Race and Ethnicity
+              </Typography>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  {currentSchool && <RaceEthDonut data={prepData(currentSchool.race_ethnicity)} />}
+                  {currentSchool && <RaceEthDonut data={raceData} />}
                 </div>
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
             <Paper className={classes.paper}>
+              <Typography>
+                  Programs
+              </Typography>
               <div className="pie-container" >
                 <div className="pie-wrapper">
-                  {currentSchool && <ProgramDonut data={prepData(currentSchool.program_percentage)} />}
+                  {currentSchool && <ProgramDonut data={programData} />}
                 </div>
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>{currentSchool?.school.name}</Paper>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
+            <Paper className={classes.paper}>
+              <Typography>
+                  Programs
+              </Typography>
+              <div className="pie-container" >
+                <div className="pie-wrapper">
+                  {currentSchool && <EarningsChart />}
+                </div>
+              </div>
+            </Paper>
           </Grid>
         </Grid>
       </div>
-      </div>
+    </div>
   )
 }
 

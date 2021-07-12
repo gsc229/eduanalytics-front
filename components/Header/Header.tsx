@@ -41,7 +41,7 @@ const Header = () => {
           </IconButton>
           <SchoolIcon color="secondary" className={classes.icon} />
           <Typography variant="h6" color="secondary" noWrap>
-            College Scorecard
+            College Snapshot
           </Typography>
         </Toolbar>
       </AppBar>
