@@ -55,17 +55,17 @@ export const BarChart = ({ data, keys }:{data:any, keys:any}) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'country',
+            legend: 'time in workforce',
             legendPosition: 'middle',
-            legendOffset: 32
+            legendOffset: 38
         }}
         axisLeft={{
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: 'salary',
             legendPosition: 'middle',
-            legendOffset: -40
+            legendOffset: -50
         }}
         labelSkipWidth={12}
         labelSkipHeight={12}
