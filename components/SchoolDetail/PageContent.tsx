@@ -7,6 +7,7 @@ import { RaceEthDonut } from '../../components/SchoolDetail/RaceEthDonut'
 import { ProgramDonut  } from '../../components/SchoolDetail/ProgramDonut'
 import TopPaper from '../../components/SchoolDetail/TopPaper'
 import { prepData } from '../../components/SchoolDetail/prepDonutData'
+import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme: Theme) =>
 
@@ -21,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: "white",
       margin: theme.spacing(1)
     },
+    topPaperText: {
+      width: "fit-content"
+    }
   }),
 );
 
@@ -53,12 +57,17 @@ function PageContent() {
   return (
     <div ref={componentRef} className="school-detail-page page-container">
         <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid  xs={10}>
             <TopPaper classes={classes} currentSchool={currentSchool}  />
           </Grid>
-          <Grid item xs={12}>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
             <Paper className={classes.paper}>
+            <Typography>
+                  Race and Ethnicity
+              </Typography>
               <div className="pie-container" >
                 <div className="pie-wrapper">
                   {currentSchool && <RaceEthDonut data={raceData} />}
@@ -66,17 +75,19 @@ function PageContent() {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+        </Grid>
+        <Grid justifyContent="center" container spacing={3}>
+          <Grid item xs={10}>
             <Paper className={classes.paper}>
+              <Typography>
+                  Programs
+              </Typography>
               <div className="pie-container" >
                 <div className="pie-wrapper">
                   {currentSchool && <ProgramDonut data={programData} />}
                 </div>
               </div>
             </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>{currentSchool?.school.name}</Paper>
           </Grid>
         </Grid>
       </div>

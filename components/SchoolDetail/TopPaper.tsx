@@ -23,7 +23,9 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h4">{currentSchool?.school.name}</Typography>
+      <Typography variant="h4">
+        {currentSchool?.school.name}
+      </Typography>
       {currentSchool?.school.alias && (
         <Typography variant="body1">
           Alias: {currentSchool?.school.alias}
@@ -39,9 +41,11 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
         container
         direction="row"
       >
+
         <Grid item>
           <RoomIcon />
         </Grid>
+
         <Grid item>
           <Typography variant="body2">
             {currentSchool?.school.city}, &nbsp;
@@ -50,13 +54,14 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
             {currentSchool?.school.zip}
           </Typography>
         </Grid>
-      </Grid>
-      <Grid spacing={1} justifyContent="center" container direction="row">
-        <Grid justifyContent="center" alignContent="center" item>
+
+        
+        <Grid xs={12} justifyContent="center" alignContent="center" item>
           <Button href={getLink()}>
             <LanguageIcon /> Website 
           </Button>
         </Grid>
+
       </Grid>
     </Paper>
   );

@@ -40,7 +40,7 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
     setOnSearchPage(false)
     currentSchoolSet(school)
     setIsSearching(true)
-    router.push(`/school-detail/${school.school.name.replace(/ /g, "-")}`)
+    router.push(`/school-detail/${school.school.name.replace(/\b(?: |\/)\b/gi, "-")}`)
   }
 
   return (
