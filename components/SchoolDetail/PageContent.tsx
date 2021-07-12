@@ -93,7 +93,7 @@ function PageContent() {
           <Grid item xs={10}>
             <Paper className={classes.paper}>
               <Typography>
-                  Programs
+                  Earnings After Entry Into Workforce
               </Typography>
               <div className="pie-container" >
                 <div className="pie-wrapper">
