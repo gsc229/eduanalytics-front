@@ -39,7 +39,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
         spacing={1}
         justifyContent="center"
         container
-        direction="row"
+        //direction="row"
       >
 
         <Grid item>
@@ -56,7 +56,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
         </Grid>
 
         
-        <Grid xs={12} justifyContent="center" alignContent="center" item>
+        <Grid xs={12} item>
           <Button href={getLink()}>
             <LanguageIcon /> Website 
           </Button>
