@@ -74,7 +74,7 @@ const SideDrawer = () => {
             </ListItemIcon>
             <ListItemText onClick={downloadJSON} primary="{ JSON }" />
           </ListItem>
-
+          
         </List>
       <Divider />
     </div>
