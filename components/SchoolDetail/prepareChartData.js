@@ -12,6 +12,10 @@ const earningSegments = {
 
 
 export const preParedChartData = (earningsData) => {
+  earningsData = earningsData.sort((a, b) => {
+    return  JSON.parse(a.years_after_entry.match(/\d+/g)) - JSON.parse(b.years_after_entry.match(/\d+/g)) 
+  })
+  
 
   // add the color to the key
   const normalizedData = []
@@ -51,11 +55,10 @@ export const preParedChartData = (earningsData) => {
 
   })
 
-  
 
   return {
     providedKeys,
-    normalizedData
+    normalizedData,
   }
 
 }
