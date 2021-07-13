@@ -75,7 +75,7 @@ export default function SearchInput({}) {
         params: {
           api_key: apiKey,
           "school.name": name,
-          per_page: 10,
+          per_page: 100,
           keys_nested: true,
           _fields: school_fields + latest_fields
         }

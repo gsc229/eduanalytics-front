@@ -1,4 +1,5 @@
 >.
+> Deployed to https://eduanalytics-front.vercel.app/
 >## Starting the Next.js Server
 >### Install Dependencies:
 >```
@@ -39,7 +40,7 @@
 >```
 > This will install all the dependencies in the Pipfile
 > You can now use all the normal python commands from inside the pipenv shell.
->## Starting Flask The Server
+>## Starting The Flask Server
 > Before you can start the server you'll need to set the following environment variables in a .env file
 > ```
 > BASE_URL='https://api.data.gov/ed/collegescorecard/v1/schools/'
