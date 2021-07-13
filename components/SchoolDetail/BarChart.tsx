@@ -2,7 +2,6 @@
 import { ResponsiveBar } from '@nivo/bar'
 
 export const BarChart = ({ data, keys }:{data:any, keys:any}) => (
-    
     <ResponsiveBar
         data={data}
         keys={keys}
