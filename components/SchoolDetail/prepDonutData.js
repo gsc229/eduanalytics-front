@@ -1,21 +1,18 @@
-
 export const prepData = (dataObj) => {
-  
-  const programData = []
+  const programData = [];
 
-  if(dataObj) {
+  if (dataObj) {
     Object.entries(dataObj).forEach(([key, value]) => {
-      if(value !== null && value > 0){
+      if (value !== null && value > 0) {
         const datum = {
           id: key,
           label: key,
-          value: value
-        }
-        programData.push(datum)
+          value: value,
+        };
+        programData.push(datum);
       }
-    })
+    });
   }
 
-  return programData
-
-}
+  return programData;
+};

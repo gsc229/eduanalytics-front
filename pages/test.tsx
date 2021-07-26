@@ -1,5 +1,5 @@
-import React from 'react';
-import BasicLayout  from '../layouts/BasicLayout';
+import React from "react";
+import BasicLayout from "../layouts/BasicLayout";
 
 const test = () => {
   return (
@@ -7,7 +7,6 @@ const test = () => {
       <h1>THIS IS ONLY A TEST</h1>
     </BasicLayout>
   );
-}
+};
 
 export default test;
-
