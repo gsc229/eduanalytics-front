@@ -38,21 +38,18 @@ const getLSCurrentSchool = () => {
 }
 
 
-
-
-
 export const useSchools = ( initial:SchoolDataType[] ) => {
 
-  const [schools, schoolsSet] = React.useState<SchoolDataType[]>(initial)
+  const [schools, setSchools] = React.useState<SchoolDataType[]>(initial)
   const [isSearching, setIsSearching] = React.useState(false)
   const [onSearchPage, setOnSearchPage] = React.useState(true)
-  const [currentSchool, setCurrentSchool] = React.useState<SchoolDataType | undefined>(getLSCurrentSchool)
+  const [currentSchool, setCurrentSchool] = React.useState<SchoolDataType | undefined>(getLSCurrentSchool())
   const [ drawerOpen, setDrawerOpen  ] = React.useState(false)
   const [ componentRef, setComponentRef] = React.useState<React.MutableRefObject<null>>()
 
   return {
     schools,
-    schoolsSet,
+    setSchools,
     currentSchool, 
     setCurrentSchool,
     componentRef,
@@ -68,10 +65,10 @@ export const useSchools = ( initial:SchoolDataType[] ) => {
       setCurrentSchool(school)
     },
     loadNewData(fetchedSchools: SchoolDataType[]){
-      schoolsSet(normalizeData(fetchedSchools))
+      setSchools(normalizeData(fetchedSchools))
     },
     loadFromLocalStorage(schoolData:SchoolDataType[]){
-      schoolsSet(schoolData)
+      setSchools(schoolData)
     }
   }
 }

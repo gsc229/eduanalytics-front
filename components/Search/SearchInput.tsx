@@ -42,7 +42,7 @@ export default function SearchInput({}) {
   // Search term
   const [ schoolName, setSchoolName ] = useState("")
   // API search results & Searching status (whether there is pending API request)
-  const { schools, loadNewData, isSearching, setIsSearching, onSearchPage, setOnSearchPage, currentSchool } = useSchoolsContext()
+  const { schools, loadNewData, isSearching, setIsSearching, onSearchPage, setOnSearchPage } = useSchoolsContext()
   // Debounce search term so that it only gives us latest value ...
   // ... if searchTerm has not been updated within last 500ms.
   // The goal is to only have the API call fire when user stops typing ...
@@ -61,6 +61,7 @@ export default function SearchInput({}) {
         setIsSearching(false)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   )
   
