@@ -15,18 +15,18 @@ a {
   box-sizing: border-box;
 } */
 
-.page-wrapper{
+.page-wrapper {
   width: 100%;
   min-height: 100vh;
 }
 
-.page-container{
+.page-container {
   min-height: 100vh;
   height: fit-content;
   padding: 0 0 5rem;
   display: flex;
   justify-content: center;
-  background-image: url('../public/images/so-white.png');
+  background-image: url("../public/images/so-white.png");
 }
 
-@import '../pages/school-detail/school_detal_page.scss'
+@import "../pages/school-detail/school_detal_page.scss";

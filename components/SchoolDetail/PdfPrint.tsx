@@ -1,18 +1,23 @@
 import * as React from "react";
-import { useReactToPrint  } from "react-to-print";
+import { useReactToPrint } from "react-to-print";
 import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItem from '@material-ui/core/ListItem'
+import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import LinearIndeterminate from "../Progress/LinearIndeterminate";
 import { useSchoolsContext } from "../../src/store";
 
-export const PdfPrint = ({classes, onSearchPage}:{classes:any, onSearchPage:boolean}) => {
-
+export const PdfPrint = ({
+  classes,
+  onSearchPage,
+}: {
+  classes: any;
+  onSearchPage: boolean;
+}) => {
   //const componentRef = React.useRef(null);
 
-  const { componentRef } = useSchoolsContext()
-  const tempRef = React.useRef(null)
+  const { componentRef } = useSchoolsContext();
+  const tempRef = React.useRef(null);
   const onBeforeGetContentResolve = React.useRef<(() => void) | null>(null);
 
   const [loading, setLoading] = React.useState(false);
@@ -56,16 +61,18 @@ export const PdfPrint = ({classes, onSearchPage}:{classes:any, onSearchPage:bool
   });
 
   React.useEffect(() => {
-    if (text === "New, Updated Text!" && typeof onBeforeGetContentResolve.current === "function") {
+    if (
+      text === "New, Updated Text!" &&
+      typeof onBeforeGetContentResolve.current === "function"
+    ) {
       onBeforeGetContentResolve.current();
     }
   }, [onBeforeGetContentResolve, text]);
 
   return (
     <div>
-      <ListItem
-      disabled={onSearchPage} className={classes.listItem} button>
-        <ListItemIcon onClick={handlePrint} className={classes.listIcon} > 
+      <ListItem disabled={onSearchPage} className={classes.listItem} button>
+        <ListItemIcon onClick={handlePrint} className={classes.listIcon}>
           <PictureAsPdfIcon />
         </ListItemIcon>
         <ListItemText onClick={handlePrint} primary="Print/Download" />
@@ -79,7 +86,3 @@ export const PdfPrint = ({classes, onSearchPage}:{classes:any, onSearchPage:bool
     </div>
   );
 };
-
-
-
-

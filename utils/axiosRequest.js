@@ -1,15 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 
-const baseUrl = process.env.SCHOOL_DATA_BASE_URL
+const baseUrl = process.env.SCHOOL_DATA_BASE_URL;
 
-const axiosRequest = () =>  {
+const axiosRequest = () => {
   return axios.create({
-  baseURL: baseUrl,
-  headers: {  
-    Accept: 'application/json'
-  },
-  responseType: 'json'
-  
-})}
+    baseURL: baseUrl,
+    headers: {
+      Accept: "application/json",
+    },
+    responseType: "json",
+  });
+};
 
-export default axiosRequest
+export default axiosRequest;

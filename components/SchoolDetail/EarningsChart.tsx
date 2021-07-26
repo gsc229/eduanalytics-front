@@ -46,7 +46,7 @@ function EarningsChart() {
             height: "400px",
             margin: "auto",
             display: "flex",
-            flexDirection: 'column',
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
