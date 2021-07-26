@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
 import { SchoolDataType } from '../../src/store'
 import { useSchoolsContext } from '../../src/store'
+import { ContactsOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => (
   {
@@ -40,9 +41,9 @@ function SchoolCard({ school }: { school:SchoolDataType }) {
     setOnSearchPage(false)
     currentSchoolSet(school)
     setIsSearching(true)
-    router.push(`/school-detail/${school.school.name.replace(/\b(?: |\/)\b/gi, "-")}`)
+    router.push(`/school-detail/${school.school.name.replace(/\s|\//gi, "-")}`)
   }
-
+  
   return (
     <Card  className={classes.root}>
       <CardContent>

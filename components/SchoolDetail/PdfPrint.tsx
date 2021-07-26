@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useReactToPrint  } from "react-to-print";
-import PageContent from "./PageContent";
 import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItem from '@material-ui/core/ListItem'
@@ -45,7 +44,7 @@ export const PdfPrint = ({classes, onSearchPage}:{classes:any, onSearchPage:bool
 
   const reactToPrintContent = React.useCallback(() => {
     return componentRef ? componentRef.current : tempRef.current;
-  }, [componentRef?.current]);
+  }, [componentRef, tempRef]);
 
   const handlePrint = useReactToPrint({
     content: reactToPrintContent,
@@ -60,7 +59,7 @@ export const PdfPrint = ({classes, onSearchPage}:{classes:any, onSearchPage:bool
     if (text === "New, Updated Text!" && typeof onBeforeGetContentResolve.current === "function") {
       onBeforeGetContentResolve.current();
     }
-  }, [onBeforeGetContentResolve.current, text]);
+  }, [onBeforeGetContentResolve, text]);
 
   return (
     <div>

@@ -56,7 +56,7 @@ function PageContent() {
     <div ref={componentRef} className="school-detail-page page-container">
       <div className={classes.root}>
         <Grid justifyContent="center" container spacing={3}>
-          <Grid  xs={10}>
+          <Grid item xs={10}>
             <TopPaper classes={classes} currentSchool={currentSchool}  />
           </Grid>
         </Grid>
