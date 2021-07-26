@@ -89,7 +89,7 @@ function PageContent() {
           </Grid>
         </Grid>
         <Grid justifyContent="center" container spacing={3}>
-          <Grid justifyContent='center' item xs={10}>
+          <Grid item xs={10}>
             <Paper className={classes.paper}>
               <Typography>
                   Earnings After Entry Into Workforce
