@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { useSchoolsContext } from '../../src/store'
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
@@ -37,9 +37,8 @@ function PageContent() {
   const { currentSchool, setComponentRef } = useSchoolsContext()
   const classes = useStyles()
 
-  useEffect(() => {
-    setComponentRef(componentRef)
-  }, [componentRef]);
+
+  setComponentRef(componentRef)
 
 
   const { raceData, programData } = useMemo(() => {

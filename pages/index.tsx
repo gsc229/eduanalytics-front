@@ -8,8 +8,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core'
-import { height } from '@material-ui/system'
-import { display } from '@material-ui/system'
+import { useState } from 'react'
 
 const useStyles = makeStyles((theme) => ({
   startContainer: {
@@ -40,18 +39,25 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
 
   const classes = useStyles()
-
+  const [state, setState] = useState()
   const { schools, isSearching, loadFromLocalStorage } = useSchoolsContext()
-  
-  useEffect(() => {
-    const lsSchools = localStorage.getItem("schools")
 
-    if(lsSchools){
-      return loadFromLocalStorage(JSON.parse(lsSchools))
-    }
+  useEffect(() => {
+
+    const lsSchools = localStorage.getItem("schools")
     
-    return loadFromLocalStorage([])
+    if(lsSchools){
+      loadFromLocalStorage(JSON.parse(lsSchools))
+    } else loadFromLocalStorage([])
+   
+  
   }, [])
+    
+
+    
+
+  
+  
 
   return (
     <BasicLayout>
