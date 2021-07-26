@@ -4,6 +4,7 @@ import { useSchoolsContext } from '../../src/store'
 import { BarChart } from './BarChart'
 import { preParedChartData } from './prepareChartData'
 import LinearIndeterminate from '../Progress/LinearIndeterminate'
+import CircularIndeterminate from '../Progress/CircularIndeterminate'
 
 function EarningsChart() {
 
@@ -22,13 +23,14 @@ function EarningsChart() {
       const { providedKeys, normalizedData }:{providedKeys:any, normalizedData:any} = preParedChartData(earningsData)
       setChartData(normalizedData)
       setKeys(providedKeys)
+      setFetchingData(false)
     })
     .catch(error => {
       setFetchingData(false)
       console.log({error})
     })
 
-    setFetchingData(false)
+    
 
   }, [currentSchool?.id])
 
@@ -42,8 +44,8 @@ function EarningsChart() {
       </div>
       }
       {fetchingData &&
-      <div style={{width: "300px", margin: "auto"}}>
-        <LinearIndeterminate />
+      <div style={{height: '400px', margin: "auto", display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <CircularIndeterminate />
       </div>
       }
     </div>
