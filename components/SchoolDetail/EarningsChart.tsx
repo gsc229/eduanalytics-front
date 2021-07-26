@@ -3,7 +3,6 @@ import axios from '../../utils/axiosRequest'
 import { useSchoolsContext } from '../../src/store'
 import { BarChart } from './BarChart'
 import { preParedChartData } from './prepareChartData'
-import LinearIndeterminate from '../Progress/LinearIndeterminate'
 import CircularIndeterminate from '../Progress/CircularIndeterminate'
 
 function EarningsChart() {
