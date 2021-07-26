@@ -24,12 +24,13 @@ function EarningsChart() {
       setKeys(providedKeys)
     })
     .catch(error => {
+      setFetchingData(false)
       console.log({error})
     })
 
     setFetchingData(false)
 
-  }, [])
+  }, [currentSchool?.id])
 
 
 
