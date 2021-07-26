@@ -14,7 +14,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
     const regex2 = new RegExp("https*")
     const test1 = currentSchool ? regex1.test(currentSchool?.school.school_url) : false
     const test2 = currentSchool ? regex2.test(currentSchool?.school.school_url) : false
-
+    // some school urls have the protocoll some don't
     if(test1 && test2) return currentSchool?.school.school_url
 
     return currentSchool ? `https://${currentSchool.school.school_url}` : '/'
@@ -56,7 +56,7 @@ function TopData({classes, currentSchool}:{classes:any, currentSchool:SchoolData
         </Grid>
 
         
-        <Grid xs={12} item>
+        <Grid item xs={12}>
           <Button href={getLink()}>
             <LanguageIcon /> Website 
           </Button>

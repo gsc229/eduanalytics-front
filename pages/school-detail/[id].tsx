@@ -11,11 +11,15 @@ import router from 'next/router'
 
 
   useEffect(() => {
-    setIsSearching(false)
-    setOnSearchPage(false)
+    if(currentSchool){
+      setIsSearching(false)
+      setOnSearchPage(false)
+    }
+    
     if(!currentSchool) router.push("/")
-  }, [])
+  }, [currentSchool, setIsSearching, setOnSearchPage])
 
+  
 
 
   return (
