@@ -15,6 +15,7 @@ const SchoolDetail = () => {
     }
 
     if (!currentSchool) router.push("/");
+    
   }, [currentSchool, setIsSearching, setOnSearchPage]);
 
   return <BasicLayout>{currentSchool && <PageContent />}</BasicLayout>;
