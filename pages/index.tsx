@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core";
-import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   startContainer: {
@@ -35,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const [state, setState] = useState();
   const { schools, isSearching, loadFromLocalStorage } = useSchoolsContext();
 
   useEffect(() => {
@@ -44,6 +42,7 @@ export default function Home() {
     if (lsSchools) {
       loadFromLocalStorage(JSON.parse(lsSchools));
     } else loadFromLocalStorage([]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

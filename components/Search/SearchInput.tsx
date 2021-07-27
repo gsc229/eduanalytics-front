@@ -78,15 +78,15 @@ export default function SearchInput({}) {
     "latest.student.size,latest.student.demographics.race_ethnicity,latest.academics.program_percentage";
 
   const searchSchools = (name: string) => {
-    const apiKey = process.env.API_KEY;
+    const api_key = process.env.API_KEY;
     return axios()
       .get("/", {
         params: {
-          api_key: apiKey,
           "school.name": name,
           per_page: 100,
           keys_nested: true,
           _fields: school_fields + latest_fields,
+          api_key
         },
       })
       .then((r) => {
