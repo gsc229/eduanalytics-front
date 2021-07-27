@@ -43,7 +43,7 @@ export default function Home() {
     if (lsSchools) {
       loadFromLocalStorage(JSON.parse(lsSchools));
     } else loadFromLocalStorage([]);
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
