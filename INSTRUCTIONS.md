@@ -26,7 +26,7 @@
 > ### Start the server:
 >
 > ```
-> yarn start
+> yarn run dev
 > ```
 
 > .
@@ -77,7 +77,9 @@
 > ## Using the API
 >
 > localhost:8000
+>
 > |endpoints| request | description |
 > |--|--|--|
 > | /schools | GET | Query Schools just as you would at https://api.data.gov/ed/collegescorecard/v1/schools/? |
 > | /earnings-chart-data/:schoolId | GET | returns student earnings data in the shape needed for the earnings bar chart on the frontend
+
