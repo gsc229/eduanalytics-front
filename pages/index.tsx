@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
-  const [state, setState] = useState();
   const { schools, isSearching, loadFromLocalStorage } = useSchoolsContext();
 
   useEffect(() => {
@@ -44,6 +43,7 @@ export default function Home() {
     if (lsSchools) {
       loadFromLocalStorage(JSON.parse(lsSchools));
     } else loadFromLocalStorage([]);
+
   }, []);
 
   return (
